@@ -12,11 +12,11 @@ export function main() {
     let tipoProduto = ['Camiseta', 'Tenis'];
 
     const produtoController: ProdutoController = new ProdutoController();
-    
-    const cm1 =  new Camisetas("05 - Infantil", 1, "ABC", 50.00, 2, "");
-    const cm2 =  new Camisetas("18 - Juvenil", 1, "Moda Inverno", 100.00, 2, "");
-    const cm3 =  new Tenis("26/27", 10, "Infantil", 99.00, 2, "");
-    const cm4 =  new Tenis("36/37", 15, "Juvenil", 99.00, 2, "");
+
+    const cm1 = new Camisetas("05 - Infantil", 1, "ABC", 50.00, 2, "");
+    const cm2 = new Camisetas("18 - Juvenil", 1, "Moda Inverno", 100.00, 2, "");
+    const cm3 = new Tenis("26/27", 10, "Infantil", 99.00, 2, "");
+    const cm4 = new Tenis("36/37", 15, "Juvenil", 99.00, 2, "");
     cm1.visualizar();
     cm2.visualizar();
     cm3.visualizar();
@@ -76,14 +76,14 @@ export function main() {
                 console.log("\nListar Produto pelo Id");
                 id = readlinesync.questionInt("Digite o Id do Produto Que Deseja Buscar: ");
                 produtoController.listarTodosId(id);
-                
+
                 keyPress()
                 break;
             case 3:
 
                 console.log("\n\nCadastrar Produtos\n\n");
                 console.log("\nInforme o numero id do produto que Deseja Cadastrar");
-                numero = readlinesync.questionFloat("")  
+                numero = readlinesync.questionFloat("")
                 console.log("\nInforme qual produto deseja Cadastrar?");
                 tipo = readlinesync.keyInSelect(tipoProduto, "", { cancel: false }) + 1;
                 console.log("Informe o Tamanho do Seu Produto Escolhido em Forma Numerica: ")
