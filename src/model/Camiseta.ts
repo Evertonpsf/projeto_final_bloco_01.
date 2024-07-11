@@ -19,7 +19,7 @@ export class Camisetas extends Produto {
 	}
     public visualizar() {
         super.visualizar();
-        console.log(`o produto escolhido foi uma regata. ${this.regata}`);
+        console.log(`O produto escolhido foi uma regata. ${this.regata}`);
 
     }
 }

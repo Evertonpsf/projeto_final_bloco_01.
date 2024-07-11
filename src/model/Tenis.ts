@@ -2,20 +2,20 @@ import { Produto } from "./Produto";
 
 export class Tenis extends Produto {
 
-    private _jordan: string;
+    private calcado: string;
 
     constructor(tamanho: string, tipo: number, nome: string, preco: number, id: number, jordan: string) {
         super(tamanho, tipo, nome, preco, id)
-        this._jordan = jordan;
+        this.calcado = jordan;
     }
     
    
 	public get jordan(): string {
-		return this._jordan;
+		return this.calcado;
 	}
 
     public set jordan(value: string) {
-		this._jordan = value;
+		this.calcado = value;
 	}
     public visualizar() {
         super.visualizar();

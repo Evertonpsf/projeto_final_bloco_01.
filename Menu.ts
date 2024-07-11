@@ -7,22 +7,13 @@ import { Tenis } from "./src/model/Tenis";
 
 export function main() {
 
-    let tamanho, tipo, nome: string;
+    let tamanho: string;
+    let tipo, nome: string;
     let opcao, preco, id, numero: number; //a variavel opcao percorre todo o menu
     let tipoProduto = ['Camiseta', 'Tenis'];
 
     const produtoController: ProdutoController = new ProdutoController();
 
-    const cm1 = new Camisetas("05 - Infantil", 1, "ABC", 50.00, 2, "");
-    const cm2 = new Camisetas("18 - Juvenil", 1, "Moda Inverno", 100.00, 2, "");
-    const cm3 = new Tenis("26/27", 10, "Infantil", 99.00, 2, "");
-    const cm4 = new Tenis("36/37", 15, "Juvenil", 99.00, 2, "");
-    cm1.visualizar();
-    cm2.visualizar();
-    cm3.visualizar();
-    cm4.visualizar();
-    //a variavel opcao percorre todo o menu
-    //const m1: Medicamento = new Medicamento(1,"teste")
 
     console.log(colors.fg.magentastrong, "\n\nSeja Bem vindo, informe seu Nome Abaixo para melhor atende-lo!\n\n", colors.reset);
     nome = readlinesync.question("")
@@ -75,7 +66,7 @@ export function main() {
 
                 console.log("\nListar Produto pelo Id");
                 id = readlinesync.questionInt("Digite o Id do Produto Que Deseja Buscar: ");
-                produtoController.listarTodosId(id);
+                produtoController.procurarPorId(id);
 
                 keyPress()
                 break;
@@ -83,53 +74,96 @@ export function main() {
 
                 console.log("\n\nCadastrar Produtos\n\n");
                 console.log("\nInforme o numero id do produto que Deseja Cadastrar");
-                numero = readlinesync.questionFloat("")
+                id = readlinesync.questionInt("")
+
                 console.log("\nInforme qual produto deseja Cadastrar?");
                 tipo = readlinesync.keyInSelect(tipoProduto, "", { cancel: false }) + 1;
-                console.log("Informe o Tamanho do Seu Produto Escolhido em Forma Numerica: ")
-                tamanho = readlinesync.questionFloat("");
+
+                console.log("Informe o Tamanho do Seu Produto Escolhido: ")
+                tamanho = readlinesync.question("");
+
+                console.log("Informe o Preco do Produto:");
+                preco = readlinesync.questionFloat("")
+
+                if (tipo === 1) {
+                    console.log("Informe o modelo do Produto");
+                    let regata = readlinesync.question("")
+                    produtoController.cadastrar(new Camisetas(tamanho, tipo, nome, preco, id, regata));
+                } else {
+                    console.log("Informe o modelo do Tênis");
+                    let tenis = readlinesync.question("")
+                    produtoController.cadastrar(new Tenis(tamanho, tipo, nome, preco, id, tenis));
+
+                }
+
+
                 console.log("\nProduto Cadastrado com Sucesso!\n");
 
                 keyPress()
                 break;
             case 4:
 
-                console.log("\nAtualizar Produto");
-                console.log("\nInforme qual produto deseja Atualizar?");
-                tipo = readlinesync.keyInSelect(tipoProduto, "", { cancel: false })
-                console.log("\nProduto Atualizado com Sucesso!\n");
 
-
-                keyPress()
-                break;
-            case 5:
-
-                console.log("\nApagar um Produto ");
+                console.log("\n\nAtualizar dados do Produto\n\n", colors.reset);
                 id = readlinesync.questionInt("Digite o Id do Produto: ");
-                produtoController.deletar(id);
 
-                keyPress()
-                break;
-            default:
-                console.log("\n Esta opção esta invalida, Informe uma opção de acordo com o Menu!");
+                let produto = produtoController.buscarNoArray(id);
 
-                keyPress()
-                break;
+                if (produto !== null) {
+
+                    nome = readlinesync.question("Digite o Nome do Produto: ");
+                    tipo = produto.tipo;
+                    preco = readlinesync.questionFloat("Digite o preco: ");
+                    tamanho = produto.tamanho
+
+                    switch (tipo) {
+                        case 1:
+                            let calcado
+                            calcado = readlinesync.question("Digite o modelo do tenis: ");
+                            produtoController.atualizar(new Tenis(tamanho, tipo, nome, preco, id, calcado));
+                            console.log("Produto atualizado com sucesso.");
+                            
+                            break;
+                        case 2:
+                        
+                            let regata = readlinesync.question("Digite o modelo da camisa: ");
+                            produtoController.atualizar(new Camisetas(tamanho, tipo, nome, preco, id, regata));
+                            console.log("Produto atualizado com sucesso.");
+
+                            break;
+
+                            keyPress()
+                            break;
+                        case 5:
+
+                            console.log("\nApagar um Produto ");
+                            id = readlinesync.questionInt("Digite o Id do Produto: ");
+                            produtoController.deletar(id);
+
+                            keyPress()
+                            break;
+                        default:
+                            console.log("\n Esta opção esta invalida, Informe uma opção de acordo com o Menu!");
+
+                            keyPress()
+                            break;
+                    }
+                }
+        }
+
+        function sobre(): void {
+            console.log("\n><><><><><><><><><><><><><><><><><><><><><><><><><><>");
+            console.log("Projeto Desenvolvido por: Everrton Pinheiro Sales Figueiredo ");
+            console.log("Generation Brasil - everton.figueiredo@genstudents.org");
+            console.log("https://github.com/Evertonpsf");
+            console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><");
+        }
+        function keyPress(): void {
+            console.log(colors.reset, "");
+            console.log("\nPressione enter para continuar...");
+            readlinesync.prompt();
         }
     }
-}
 
-export function sobre(): void {
-    console.log("\n><><><><><><><><><><><><><><><><><><><><><><><><><><>");
-    console.log("Projeto Desenvolvido por: Everrton Pinheiro Sales Figueiredo ");
-    console.log("Generation Brasil - everton.figueiredo@genstudents.org");
-    console.log("https://github.com/Evertonpsf");
-    console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><");
 }
-function keyPress(): void {
-    console.log(colors.reset, "");
-    console.log("\nPressione enter para continuar...");
-    readlinesync.prompt();
-}
-
 main();

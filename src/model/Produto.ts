@@ -75,7 +75,7 @@ export abstract class Produto {
                 break;
         }
 
-        console.log("\nProdutos De Vestuario!:\n");
+        console.log("\nProduto!:\n");
         console.log("*****************************************************");
         console.log(`Número do id do Produto: ${this._id}`);
         console.log(`Tamanho do Produto: ${this._tamanho}`);
