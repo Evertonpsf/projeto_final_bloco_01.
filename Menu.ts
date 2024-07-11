@@ -1,8 +1,15 @@
 import readlinesync = require("readline-sync");
 import { colors } from "./util/Colors";
-
+import { Produto } from "./src/model/Produto";
+import { Camisetas } from "./src/model/Camiseta";
 
 export function main() {
+
+    
+    //const cm1 =  new Camisetas("P - Pequeno", 2, "everton", 99.00, 2, "teste");
+    //cm1.visualizar();
+
+
 
     //a variavel opcao percorre todo o menu
     let opcao: number;
