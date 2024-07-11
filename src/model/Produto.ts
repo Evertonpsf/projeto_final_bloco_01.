@@ -75,13 +75,13 @@ export abstract class Produto {
                 break;
         }
 
-        console.log("\nDados do Produto:\n");
+        console.log("\nProdutos De Vestuario!:\n");
         console.log("*****************************************************");
-        console.log(`Número do id do produto: ${this._id}`);
-        console.log(`Tamanhoo do produto: ${this._tamanho}`);
-        console.log(`Nome do produto: ${this._nome}`);
-        console.log(`Tipo do produto: ${tipo}`);
-        console.log(`Preço do produto: ${this._preco.toFixed(2)}`);
+        console.log(`Número do id do Produto: ${this._id}`);
+        console.log(`Tamanho do Produto: ${this._tamanho}`);
+        console.log(`Nome do Produto: ${this._nome}`);
+        console.log(`Tipo do Produto: ${tipo}`);
+        console.log(`Preço do Produto: ${this._preco.toFixed(2)}`);
 
 
         }
